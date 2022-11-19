@@ -1,13 +1,17 @@
-
 {% if request.user.is_authenticated %}
     <p>{{request.user}}</p>
     <a href="{% url 'logout' %}">Sair</a>
 {% else %}
-<a href="{% url 'login' %}"}>Login</a>
+    <a href="{% url 'login' %}"}>Login</a>
 {% endif %}
 
-<h1>To do List {{color}}</h1>
+<h1>To do List </h1>
 <a href="{% url 'task-create' %}">add task</a>
+
+<form method="GET">
+    <input type="text" name="search-area" value="{{search_input}}">
+    <input type="submit" value="Pesquisar Tarefa" >
+</form>
 
 <table>
     <tr>
@@ -18,7 +22,7 @@
     {% for task in tasks %}
         <tr>
             <td>{{task.title}}</td>
-            <td><a href="{% url 'task' task.id %}">Ver</a></td>
+            <td><a href="{% url 'task' task.id %}">Ver </a></td>
             <td><a href="{% url 'task-update' task.id %}"> Editar</a></td>
             <td><a href="{% url 'task-delete' task.id %}"> Deletar Tarefa</a></td>
         </tr>
